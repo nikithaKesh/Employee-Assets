@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biseka Pvt Ltd - Employee Asset & Account Form</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .form-input,
+      .form-select {
+        transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+      }
+      .form-input:focus,
+      .form-select:focus {
+        --tw-ring-color: #3b82f6;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 2px var(--tw-ring-color);
+      }
+      .section-divider {
+        border-top: 1px solid #e5e7eb; /* gray-200 */
+        margin-top: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+      .preview-card {
+        border: 1px solid #e5e7eb;
+        border-radius: 0.5rem;
+        padding: 0.75rem;
+        margin-bottom: 0.5rem;
+        background-color: #f9fafb;
+        position: relative;
+      }
+      .preview-card-remove {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        background: none;
+        border: none;
+        color: #ef4444; /* red-500 */
+        cursor: pointer;
+        font-size: 0.75rem;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
+      <header class="text-center mb-8">
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900">
+          Biseka Pvt Ltd
+        </h1>
+        <p class="text-lg text-gray-600 mt-2">
+          Customer Care Employee Asset & Account Form
+        </p>
+      </header>
+
+      <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div id="data-entry-form">
+            <h2 class="text-2xl font-semibold mb-6 text-gray-800">
+              Enter Employee Details
+            </h2>
+
+            <div class="space-y-4">
+              <div>
+                <label for="userName" class="block text-sm font-medium text-gray-700 mb-1" >User Name</label>
+                <input type="text" id="userName" required class="form-input w-full" placeholder="e.g., john.doe"/>
+              </div>
+            </div>
+            
+            <div class="section-divider"></div>
+
+            <div id="schedule-section">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                    Brand Schedules
+                </h3>
+                <div class="space-y-4 border p-4 rounded-md">
+                    <select id="scheduleBrand" class="form-select w-full">
+                        <option value="">-- Select a Brand --</option>
+                        <option>Love&Lab</option>
+                        <option>Biseka</option>
+                        <option>ExactExtract</option>
+                        <option>Scrub&Butter</option>
+                    </select>
+                    <div class="grid grid-cols-2 gap-4">
+                      <input type="text" id="scheduleWeekdays" class="form-input" placeholder="Weekday Schedule (e.g., 9-5)"/>
+                      <input type="text" id="scheduleWeekends" class="form-input" placeholder="Weekend Schedule (e.g., 10-2)"/>
+                    </div>
+                    <button id="add-schedule-btn" class="w-full bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-700">
+                    Add Brand Schedule
+                    </button>
+                </div>
+            </div>
+            
+            <div class="section-divider"></div>
+
+            <div id="account-section">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                    Social Media Accounts
+                </h3>
+                <div class="space-y-4 border p-4 rounded-md">
+                    <select id="accountBrand" class="form-select w-full">
+                        <option value="">-- Assign to a Brand --</option>
+                        <option>Love&Lab</option>
+                        <option>Biseka</option>
+                        <option>ExactExtract</option>
+                        <option>Scrub&Butter</option>
+                        <option>General</option>
+                    </select>
+                    <div class="grid grid-cols-2 gap-4">
+                        <select id="accountPlatform" class="form-select">
+                            <option value="">-- Select Platform --</option>
+                            <option>Facebook</option>
+                            <option>Instagram</option>
+                            <option>WhatsApp</option>
+                            <option>TikTok</option>
+                            <option>X (Twitter)</option>
+                            <option>LinkedIn</option>
+                        </select>
+                        <input type="text" id="accountName" class="form-input" placeholder="Account Name"/>
+                    </div>
+                    <button id="add-account-btn" class="w-full bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-700">
+                    Add Account
+                    </button>
+                </div>
+            </div>
+            <div class="section-divider"></div>
+
+            <div id="phone-section">
+              <h3 class="text-lg font-semibold text-gray-800 mb-3">
+                Mobile Phones
+              </h3>
+              <div class="space-y-4 border p-4 rounded-md">
+                <div class="grid grid-cols-2 gap-4">
+                  <input type="text" id="phoneBrand" class="form-input" placeholder="Brand (e.g., Samsung)" />
+                  <input type="text" id="phoneModel" class="form-input" placeholder="Model (e.g., A52)" />
+                </div>
+                <input type="text" id="phoneSN" class="form-input w-full" placeholder="Serial Number / IMEI" />
+                <input type="text" id="phonePurpose" class="form-input w-full" placeholder="Purpose (e.g., For Love&Lab)" />
+                <div class="grid grid-cols-2 gap-4">
+                  <select id="phoneCondition" class="form-select">
+                    <option>Good</option>
+                    <option>Fair</option>
+                    <option>Needs Repair</option>
+                  </select>
+                  <select id="phoneIsUsing" class="form-select">
+                    <option>Yes</option>
+                    <option>No</option>
+                  </select>
+                </div>
+                <button id="add-phone-btn" class="w-full bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-700">
+                  Add Phone
+                </button>
+              </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div id="sim-section">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">SIM Cards</h3>
+                <div class="space-y-4 border p-4 rounded-md">
+                    <input type="text" id="simNumber" class="form-input w-full" placeholder="Phone Number" />
+                    <input type="text" id="simISP" class="form-input w-full" placeholder="ISP (e.g., Dialog, Mobitel)" />
+                    <input type="text" id="simPurpose" class="form-input w-full" placeholder="Purpose" />
+                    <select id="simIsUsing" class="form-select w-full">
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+                    <button id="add-sim-btn" class="w-full bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-700">Add SIM Card</button>
+                </div>
+            </div>
+            
+            <div class="section-divider"></div>
+
+            <div id="laptop-section">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Laptop</h3>
+                <div class="space-y-4 border p-4 rounded-md">
+                    <div class="grid grid-cols-2 gap-4">
+                        <input type="text" id="laptopBrand" class="form-input" placeholder="Brand (e.g., Dell)" />
+                        <input type="text" id="laptopModel" class="form-input" placeholder="Model (e.g., Latitude 7420)" />
+                    </div>
+                    <input type="text" id="laptopSN" class="form-input w-full" placeholder="Serial Number" />
+                    <input type="text" id="laptopPurpose" class="form-input w-full" placeholder="Purpose" />
+                    <select id="laptopCondition" class="form-select w-full">
+                        <option>Good</option>
+                        <option>Fair</option>
+                        <option>Needs Repair</option>
+                    </select>
+                    <button id="add-laptop-btn" class="w-full bg-blue-600 text-white text-sm font-semibold py-2 px-4 rounded-md hover:bg-blue-700">Add Laptop Details</button>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <div id="notes-section">
+                <h3 class="text-lg font-semibold text-gray-800 mb-3">Other Notes</h3>
+                <div class="space-y-4 border p-4 rounded-md">
+                  <textarea id="notes" class="form-input w-full h-32" placeholder="Any other relevant information..."></textarea>
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+            
+            <button id="add-employee-btn" class="w-full bg-green-600 text-white text-lg font-semibold py-3 px-4 rounded-md hover:bg-green-700">
+                Add Employee to List
+            </button>
+          </div>
+
+          <div class="lg:col-span-1">
+              <div class="sticky top-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-800">Live Preview</h2>
+                    <button id="export-csv" class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                        Export CSV
+                    </button>
+                </div>
+                <div id="preview-container" class="border border-gray-200 rounded-lg p-6 min-h-[400px] bg-gray-50/50">
+                    <div id="current-preview">
+                        <div class="mb-4">
+                            <h4 class="font-bold text-gray-800">Current Employee:</h4>
+                            <p id="preview-userName" class="text-gray-600">Not specified</p>
+                            <p id="preview-notes" class="text-gray-600 text-sm italic">No notes entered.</p>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-bold text-gray-800">Assets:</h4>
+                            <div id="asset-list" class="text-gray-600">No assets added.</div>
+                        </div>
+                    </div>
+                    <div class="section-divider"></div>
+                    <div id="saved-employees-list" class="mt-4">
+                        <h4 class="font-bold text-gray-800">Saved Employees for Export:</h4>
+                        <div id="saved-list" class="text-gray-600">No employees saved yet.</div>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("data-entry-form");
+        const exportBtn = document.getElementById("export-csv");
+        
+        const employeeData = [];
+        
+        let currentEmployee = {
+          userName: "",
+          notes: "",
+          assets: []
+        };
+
+        const renderPreview = () => {
+          document.getElementById("preview-userName").textContent = currentEmployee.userName || "Not specified";
+          document.getElementById("preview-notes").textContent = currentEmployee.notes || "No notes entered.";
+          
+          const assetListContainer = document.getElementById('asset-list');
+          assetListContainer.innerHTML = '';
+          if (currentEmployee.assets.length === 0) {
+              assetListContainer.textContent = 'No assets added.';
+          } else {
+              currentEmployee.assets.forEach((asset, index) => {
+                  const card = document.createElement('div');
+                  card.className = 'preview-card';
+                  let content = '';
+                  switch(asset.type) {
+                      case 'Schedule':
+                          content = `<b>Schedule:</b> ${asset.brand}<br>WD: ${asset.weekdays || 'N/A'} | WE: ${asset.weekends || 'N/A'}`;
+                          break;
+                      case 'Account':
+                          content = `<b>Account:</b> ${asset.accountName} (${asset.platform}) for ${asset.brand}`;
+                          break;
+                      case 'Phone':
+                          content = `<b>Phone:</b> ${asset.brand} ${asset.model} (SN: ${asset.sn || 'N/A'})`;
+                          break;
+                      case 'SIM':
+                          content = `<b>SIM:</b> ${asset.number} (${asset.isp})`;
+                          break;
+                      case 'Laptop':
+                          content = `<b>Laptop:</b> ${asset.brand} ${asset.model} (SN: ${asset.sn || 'N/A'})`;
+                          break;
+                  }
+                  card.innerHTML = `<p class="text-sm">${content}</p><button class="preview-card-remove" data-index="${index}">Remove</button>`;
+                  assetListContainer.appendChild(card);
+              });
+          }
+
+          const savedListContainer = document.getElementById('saved-list');
+          savedListContainer.innerHTML = '';
+          if (employeeData.length === 0) {
+              savedListContainer.textContent = 'No employees saved yet.';
+          } else {
+              employeeData.forEach(emp => {
+                  const savedEntry = document.createElement('div');
+                  savedEntry.className = 'text-sm mb-1 px-2 py-1 bg-gray-100 rounded';
+                  savedEntry.textContent = `• ${emp.userName} (${emp.assets.length} assets)`;
+                  savedListContainer.appendChild(savedEntry);
+              });
+          }
+
+          exportBtn.disabled = employeeData.length === 0;
+        };
+
+        const clearForm = () => {
+            document.getElementById('userName').value = '';
+            document.getElementById('notes').value = '';
+            document.querySelectorAll('#schedule-section input, #account-section input, #phone-section input, #sim-section input, #laptop-section input').forEach(el => el.value = '');
+            document.querySelectorAll('#schedule-section select, #account-section select, #phone-section select, #sim-section select, #laptop-section select').forEach(el => el.selectedIndex = 0);
+            currentEmployee = { userName: "", notes: "", assets: [] };
+        };
+
+        document.getElementById('userName').addEventListener("input", (e) => {
+          currentEmployee.userName = e.target.value.trim();
+          renderPreview();
+        });
+
+        document.getElementById('notes').addEventListener("input", (e) => {
+            currentEmployee.notes = e.target.value.trim();
+            renderPreview();
+        });
+        
+        document.getElementById('add-schedule-btn').addEventListener('click', () => {
+            const newSchedule = {
+                type: 'Schedule',
+                brand: document.getElementById('scheduleBrand').value,
+                weekdays: document.getElementById('scheduleWeekdays').value.trim(),
+                weekends: document.getElementById('scheduleWeekends').value.trim(),
+            };
+            if (newSchedule.brand) {
+                currentEmployee.assets.push(newSchedule);
+                document.getElementById('scheduleBrand').value = '';
+                document.getElementById('scheduleWeekdays').value = '';
+                document.getElementById('scheduleWeekends').value = '';
+                renderPreview();
+            } else { alert('Please select a brand for the schedule.'); }
+        });
+
+        document.getElementById('add-account-btn').addEventListener('click', () => {
+            const newAccount = {
+                type: 'Account',
+                brand: document.getElementById('accountBrand').value,
+                platform: document.getElementById('accountPlatform').value,
+                accountName: document.getElementById('accountName').value.trim(),
+            };
+            if (newAccount.brand && newAccount.platform && newAccount.accountName) {
+                currentEmployee.assets.push(newAccount);
+                document.getElementById('accountBrand').value = '';
+                document.getElementById('accountPlatform').value = '';
+                document.getElementById('accountName').value = '';
+                renderPreview();
+            } else { alert('Please fill all fields for the social account.'); }
+        });
+        
+        document.getElementById('add-phone-btn').addEventListener('click', () => {
+            const newPhone = {
+                type: 'Phone',
+                brand: document.getElementById('phoneBrand').value.trim(),
+                model: document.getElementById('phoneModel').value.trim(),
+                sn: document.getElementById('phoneSN').value.trim(),
+                purpose: document.getElementById('phonePurpose').value.trim(),
+                condition: document.getElementById('phoneCondition').value,
+                isUsing: document.getElementById('phoneIsUsing').value
+            };
+            if(newPhone.brand && newPhone.model) {
+                currentEmployee.assets.push(newPhone);
+                document.getElementById('phone-section').querySelectorAll('input').forEach(el => el.value = '');
+                document.getElementById('phoneCondition').value = 'Good';
+                document.getElementById('phoneIsUsing').value = 'Yes';
+                renderPreview();
+            } else { alert('Please enter at least a brand and model for the phone.'); }
+        });
+
+        document.getElementById('add-sim-btn').addEventListener('click', () => {
+            const newSim = {
+                type: 'SIM',
+                number: document.getElementById('simNumber').value.trim(),
+                isp: document.getElementById('simISP').value.trim(),
+                purpose: document.getElementById('simPurpose').value.trim(),
+                isUsing: document.getElementById('simIsUsing').value
+            };
+            if(newSim.number && newSim.isp) {
+                currentEmployee.assets.push(newSim);
+                document.getElementById('sim-section').querySelectorAll('input').forEach(el => el.value = '');
+                document.getElementById('simIsUsing').value = 'Yes';
+                renderPreview();
+            } else { alert('Please enter a phone number and ISP for the SIM card.'); }
+        });
+        
+        document.getElementById('add-laptop-btn').addEventListener('click', () => {
+            const existingLaptopIndex = currentEmployee.assets.findIndex(asset => asset.type === 'Laptop');
+
+            const newLaptop = { 
+              type: 'Laptop',
+              brand: document.getElementById('laptopBrand').value.trim(),
+              model: document.getElementById('laptopModel').value.trim(),
+              sn: document.getElementById('laptopSN').value.trim(),
+              purpose: document.getElementById('laptopPurpose').value.trim(),
+              condition: document.getElementById('laptopCondition').value
+            };
+            if (newLaptop.brand && newLaptop.model) {
+              if (existingLaptopIndex > -1) {
+                  currentEmployee.assets[existingLaptopIndex] = newLaptop;
+              } else {
+                  currentEmployee.assets.push(newLaptop);
+              }
+              document.getElementById('laptopBrand').value = '';
+              document.getElementById('laptopModel').value = '';
+              document.getElementById('laptopSN').value = '';
+              document.getElementById('laptopPurpose').value = '';
+              document.getElementById('laptopCondition').value = 'Good';
+              renderPreview();
+            } else {
+              alert('Please enter a brand and model for the laptop.');
+            }
+        });
+
+        document.getElementById('asset-list').addEventListener('click', (e) => {
+            if (e.target.classList.contains('preview-card-remove')) {
+                const index = parseInt(e.target.dataset.index, 10);
+                currentEmployee.assets.splice(index, 1);
+                renderPreview();
+            }
+        });
+
+        document.getElementById('add-employee-btn').addEventListener('click', () => {
+            if (!currentEmployee.userName) {
+                alert('Please enter a User Name before adding the employee to the list.');
+                return;
+            }
+            if (currentEmployee.assets.length === 0) {
+                alert('Please add at least one asset or account before adding the employee.');
+                return;
+            }
+            employeeData.push(currentEmployee);
+            clearForm();
+            renderPreview();
+        });
+
+        const escapeCsv = (val) => `"${(val || "").toString().replace(/"/g, '""')}"`;
+        
+        const exportToCsv = (data, headers, filename) => {
+            const rows = [headers.join(',')];
+            const headerMap = headers.reduce((acc, h, i) => ({ ...acc, [h]: i }), {});
+
+            data.forEach(emp => {
+                const userName = escapeCsv(emp.userName);
+                const notes = escapeCsv(emp.notes);
+                
+                emp.assets.forEach(asset => {
+                    const rowData = new Array(headers.length).fill('');
+                    
+                    // Always populate these fields if they exist in the headers
+                    if (headerMap.hasOwnProperty('User Name')) rowData[headerMap['User Name']] = userName;
+                    if (headerMap.hasOwnProperty('Notes')) rowData[headerMap['Notes']] = notes;
+
+                    switch(asset.type) {
+                        case 'Laptop':
+                            rowData[headerMap['Device Type']] = escapeCsv('Laptop');
+                            rowData[headerMap['Asset Name']] = escapeCsv('Outlet Laptop');
+                            rowData[headerMap['Make']] = escapeCsv(asset.brand);
+                            rowData[headerMap['Model']] = escapeCsv(asset.model);
+                            rowData[headerMap['Serial Number']] = escapeCsv(asset.sn);
+                            rowData[headerMap['Condition']] = escapeCsv(asset.condition);
+                            rowData[headerMap['Usage Status']] = escapeCsv(asset.purpose);
+                            break;
+                        case 'Phone':
+                            rowData[headerMap['Device Type']] = escapeCsv('Phone');
+                            rowData[headerMap['Asset Name']] = escapeCsv('Outlet Mobile Phone');
+                            rowData[headerMap['Make']] = escapeCsv(asset.brand);
+                            rowData[headerMap['Model']] = escapeCsv(asset.model);
+                            rowData[headerMap['Serial Number']] = escapeCsv(asset.sn);
+                            rowData[headerMap['Condition']] = escapeCsv(asset.condition);
+                            rowData[headerMap['Usage Status']] = escapeCsv(asset.isUsing);
+                            break;
+                        case 'SIM':
+                            rowData[headerMap['Device Type']] = escapeCsv('SIM Card');
+                            rowData[headerMap['Asset Name']] = escapeCsv('Outlet Mobile Phone SIM card');
+                            rowData[headerMap['Make']] = escapeCsv(asset.isp);
+                            rowData[headerMap['SIM Number']] = escapeCsv(asset.number);
+                            rowData[headerMap['Usage Status']] = escapeCsv(asset.isUsing);
+                            break;
+                        case 'Schedule':
+                            if (headerMap.hasOwnProperty('Brand Schedule')) rowData[headerMap['Brand Schedule']] = escapeCsv(asset.brand);
+                            if (headerMap.hasOwnProperty('Schedule')) rowData[headerMap['Schedule']] = escapeCsv(`Weekdays: ${asset.weekdays}, Weekends: ${asset.weekends}`);
+                            break;
+                        case 'Account':
+                            if (headerMap.hasOwnProperty('Brand Schedule')) rowData[headerMap['Brand Schedule']] = escapeCsv(asset.brand);
+                            if (headerMap.hasOwnProperty('Account Name')) rowData[headerMap['Account Name']] = escapeCsv(asset.accountName);
+                            if (headerMap.hasOwnProperty('Social Platform')) rowData[headerMap['Social Platform']] = escapeCsv(asset.platform);
+                            break;
+                    }
+                    rows.push(rowData.join(','));
+                });
+            });
+
+            const csvString = rows.join('\n');
+            const blob = new Blob([csvString], { type: "text/csv;charset=utf-8;" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            const date = new Date().toISOString().slice(0, 10);
+            a.setAttribute("href", url);
+            a.setAttribute("download", `${filename}_${date}.csv`);
+            a.style.display = "none";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        };
+
+        exportBtn.addEventListener("click", () => {
+            if (employeeData.length === 0) {
+                alert("Please add at least one employee to the list before exporting.");
+                return;
+            }
+
+            const assetHeaders = [
+                'User Name', 'Device Type', 'Asset Name', 'Make', 'Model',
+                'Serial Number', 'SIM Number', 'Condition', 'Usage Status', 'Notes'
+            ];
+            
+            // Updated headers for the media and schedules file
+            const mediaAndScheduleHeaders = [
+                'User Name', 'Brand Schedule', 'Account Name', 'Schedule', 'Social Platform', 'Notes'
+            ];
+            
+            // Separate the data into two groups
+            const mediaAndScheduleData = employeeData.map(emp => ({
+                userName: emp.userName,
+                notes: emp.notes,
+                assets: emp.assets.filter(asset => asset.type === 'Schedule' || asset.type === 'Account')
+            })).filter(emp => emp.assets.length > 0);
+
+            const assetData = employeeData.map(emp => ({
+                userName: emp.userName,
+                notes: emp.notes,
+                assets: emp.assets.filter(asset => asset.type === 'Laptop' || asset.type === 'Phone' || asset.type === 'SIM')
+            })).filter(emp => emp.assets.length > 0);
+
+            // Export both CSV files
+            exportToCsv(mediaAndScheduleData, mediaAndScheduleHeaders, 'biseka_media_schedules');
+            exportToCsv(assetData, assetHeaders, 'biseka_physical_assets');
+        });
+
+        renderPreview();
+      });
+    </script>
+  </body>
+</html>
